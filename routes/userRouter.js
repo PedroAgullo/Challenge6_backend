@@ -32,10 +32,10 @@ router.post('/', async (req,res) => {
 
 
 // Find users by email
-router.get("/email/:email", async (req, res) => {
+router.post("/email", async (req, res) => {
     try {
-      let email = req.params.email;
-      res.json(await usersController.findByEmail(email));
+      let email = req.body.email;
+      res.json(await userController.findByEmail(email));
     } catch (err) {
       return res.status(500).json({
         message: err.message,
