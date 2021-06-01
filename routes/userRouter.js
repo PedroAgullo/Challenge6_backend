@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController.js');
-
+const authenticate = require('../middleware/authenticate.js');
 
 
 //GET - Return all Users in the DB
@@ -32,7 +32,7 @@ router.post('/', async (req,res) => {
 
 
 // Find users by email
-router.post("/email", async (req, res) => {
+router.post("/email", authenticate, async (req, res) => {
     try {
       let email = req.body.email;
       res.json(await userController.findByEmail(email));
