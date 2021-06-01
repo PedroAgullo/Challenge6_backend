@@ -10,25 +10,25 @@ class Cliente {
         return User.find();
     }
 
-    // async createUser(user){
-    //     user.password = await bcrypt.hash(user.password, 10);
-    //     return User.create(user);
-    // }
-
-    async newUser(body) {
-        let password = body.password;
-        let passwordHashed = bcrypt.hashSync(password, 10);
-        body.password = passwordHashed;
-        return User.create(body);
-      }
-
+    async createUser(user){
+        user.password = await bcrypt.hash(user.password, 10);
+        return User.create(user);
+    }
 
 
     async findByEmail(email) {
         return User.findOne({ email: email });
     }
-    
 
+
+    async modifyUser(data){
+        return User.update(
+            //Datos que cambiamos
+            {email: data.email, password: data.password, birthday: data.birthday, address: data.address, country: data.country, city: data.city, telephone: data.telephone, isActive: data.isActive},
+            //Donde..
+            {where: {id: data.id}}
+        )
+    }   
 }
 
 
