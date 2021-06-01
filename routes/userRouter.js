@@ -46,7 +46,7 @@ router.post("/email", authenticate, async (req, res) => {
 
 
 //Modify a user
-router.put('/', authenticate, async (req, res)=> {
+router.put('/', async (req, res)=> {
     try {
         const data = req.body;
         res.json(await userController.modifyUser(data));
