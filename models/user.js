@@ -42,7 +42,7 @@ const userSchema = new Schema({
         unique: true
     },
     telephone: {
-        type: Number,        
+        type: String,        
     },
     isMonitor: {
         type: Boolean,
