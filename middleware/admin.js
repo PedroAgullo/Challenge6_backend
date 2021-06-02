@@ -8,8 +8,8 @@ const admin = (req, res, next) => {
         let token = req.headers.authorization.split(' ')[1];
         let auth = jwt.verify(token, secret);
         //console.log(auth);
-        if((auth.userId != req.body.idUser) && (auth.isAdmin == req.body.isAdmin)){
-            //console.log(req.body.idUser);
+        if((auth.id != req.body.id) && (auth.isAdmin == req.body.isAdmin)){
+            //console.log(req.body.id);
             throw new Error ( "No tienes permiso para realizar esta accion");    
         }
         return next();

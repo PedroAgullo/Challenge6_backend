@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController.js');
 const authenticate = require('../middleware/authenticate.js');
+const admin = require('../middleware/admin.js');
 
 
 //GET - Return all Users in the DB
 
-router.get('/', async (req, res) => {
+router.get('/', admin, async (req, res) => {
     try {
         res.json(await userController.findAllUsers())
     }catch (err) {
@@ -46,7 +47,7 @@ router.post("/email", authenticate, async (req, res) => {
 
 
 //Modify a user
-router.put('/', async (req, res)=> {
+router.put('/', authenticate, async (req, res)=> {
     try {
         const data = req.body;
         res.json(await userController.modifyUser(data));

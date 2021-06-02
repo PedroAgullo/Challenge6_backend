@@ -25,8 +25,9 @@ class Cliente {
       country: data.country,
       city: data.city,
       telephone: data.telephone,
-      isActive: data.isActive }
+      isActive: data.isActive },{new:true,omitUndefined:true},
     );
+    
   }
 }
 

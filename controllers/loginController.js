@@ -18,7 +18,7 @@ class LoginController {
             return new Error("El password o el email no coinciden");
         }
         let payload = {
-            userId : user.id,
+            userId : user._id,
             createdAt: new Date,
             isAdmin: user.isAdmin
         };
