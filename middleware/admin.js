@@ -3,13 +3,11 @@ const secret = "Los mas jovenes del Bootcamp";
 const admin = (req, res, next) => {
     try {
         if(!req.headers.authorization) {
-            return new Error ("No tienes autorizacion");
+            throw new Error ("No tienes autorizacion");
         }
         let token = req.headers.authorization.split(' ')[1];
         let auth = jwt.verify(token, secret);
-        //console.log(auth);
-        if((auth.id != req.body.id) && (auth.isAdmin == req.body.isAdmin)){
-            //console.log(req.body.id);
+        if((auth.isAdmin === false)){
             throw new Error ( "No tienes permiso para realizar esta accion");    
         }
         return next();

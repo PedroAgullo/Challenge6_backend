@@ -44,10 +44,6 @@ const userSchema = new Schema({
     telephone: {
         type: String,        
     },
-    isMonitor: {
-        type: Boolean,
-        default: false
-    },
     isAdmin: {
         type: Boolean,
         default: false
