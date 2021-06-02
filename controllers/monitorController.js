@@ -18,7 +18,7 @@ class Profesor {
   }
 
   async modifyMonitor(data) {
-    return User.findByIdAndUpdate(
+    return Monitor.findByIdAndUpdate(
       { _id: data.id },
       //Datos que cambiamos
       { address: data.address,

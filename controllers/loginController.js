@@ -19,7 +19,7 @@ class LoginController {
             return new Error("El password o el email no coinciden");
         }
         let payload = {
-            userId : user._id,
+            id : user._id,
             createdAt: new Date,
             isAdmin: user.isAdmin
         };
@@ -39,7 +39,7 @@ class LoginController {
             return new Error("El password o el email no coinciden");
         }
         let payload = {
-            monitorId : monitor._id,
+            id : monitor._id,
             createdAt: new Date,
             isAdmin: monitor.isAdmin
         };
