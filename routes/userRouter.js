@@ -33,7 +33,7 @@ router.post('/', async (req,res) => {
 
 
 // Find users by email
-router.post("/email", authenticate, async (req, res) => {
+router.post("/email", admin, async (req, res) => {
     try {
       let email = req.body.email;
       res.json(await userController.findByEmail(email));
