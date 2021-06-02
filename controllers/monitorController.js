@@ -25,6 +25,7 @@ class Profesor {
       country: data.country,
       city: data.city,
       telephone: data.telephone,
+      speciality: data.speciality,
       isActive: data.isActive },{new:true,omitUndefined:true},
     );
     

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const monitorSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -65,7 +65,7 @@ const toJSONConfig = {
   },
 };
 
-userSchema.set("toJSON", toJSONConfig);
+monitorSchema.set("toJSON", toJSONConfig);
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Monitor", monitorSchema);
 module.exports = User;
