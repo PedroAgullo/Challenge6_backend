@@ -24,6 +24,14 @@ class Sala {
             {$push: {members: member}});
     }
 
+    async joinRoomCoach(data){
+        const id = data.id;
+        const coach = data.coach;                
+        return Room.findByIdAndUpdate(
+            {_id: id},
+            {$push: {coaches: coach}});
+    }
+
     async leaveRoom(data){
         const id = data.id;
         const member = data.member;
@@ -32,6 +40,16 @@ class Sala {
             {_id: id},
             {$pull: {members: member}});
     }
+
+    async leaveRoomCoach(data){
+        const id = data.id;
+        const coach = data.coach;
+        console.log(id,coach);
+        return Room.findByIdAndUpdate(
+            {_id: id},
+            {$pull: {coaches: coach}});
+    }
+
 
 /*     async addMessage(data){
 

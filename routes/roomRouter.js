@@ -43,6 +43,19 @@ router.post('/join', async (req,res) => {
 
 })
 
+router.post('/join/coach', async (req,res) => {
+    try{
+        const data = req.body;
+        res.json(await roomController.joinRoomCoach(data));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        })
+    }
+
+})
+
+
 router.post('/leave', async (req, res) => {
     try{
         const data = req.body;
@@ -53,6 +66,19 @@ router.post('/leave', async (req, res) => {
         })
     }
 })
+
+
+router.post('/leave/coach', async (req, res) => {
+    try{
+        const data = req.body;
+        res.json(await roomController.leaveRoomCoach(data));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        })
+    }
+})
+
 
 router.post('/addmessage', async (req, res) => {
     try{

@@ -20,10 +20,11 @@ const roomSchema = new Schema({
     },
     coaches: {
         type: Array,
-        required: true
+        unique: true,
     },
     members: {
         type: Array,
+        unique: true,
     },
     // mensajes: {
     //     type: Array
