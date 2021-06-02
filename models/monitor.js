@@ -52,7 +52,7 @@ const monitorSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  specialty: {
+  speciality: {
     type: Array,
     required: true,
   },
