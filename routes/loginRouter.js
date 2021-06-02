@@ -27,7 +27,7 @@ router.post('/monitor', async (req, res)=> {
         const emailCheck = req.body.email;
         const passwordCheck= req.body.password;
         let token = await loginController.validateMonitor(emailCheck,passwordCheck);
-        let user = await monitorController.findByEmail(emailCheck);
+        let user = await monitorController.findByEmailMonitor(emailCheck);
         res.status(200).json({token, user});
         
     }catch (err) {

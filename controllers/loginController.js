@@ -32,7 +32,7 @@ class LoginController {
         let monitor = await monitorController.findByEmailMonitor(emailCheck);
         console.log(monitor);
 
-        let password = user.password;
+        let password = monitor.password;
         console.log(password, "<<<<<==== Password");
         let verificar = await bcrypt.compare(passwordCheck,password);
         if(!verificar){
