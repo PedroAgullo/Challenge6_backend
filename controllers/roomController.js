@@ -20,7 +20,6 @@ class Sala {
         const id = data.id;
         const member = data.member;
 
-        //Aqui empieza la fiesta...
         let arrayRoom = [];  //Declaramos el array vacio.
 
         //Encontramos la room mediante el id. Nos devuelve la coleccion completa.
@@ -32,16 +31,23 @@ class Sala {
         arrayRoom = room.members;  //Metemos en arrayRoom el array completo de usuarios de la actividad.
         let roomStatus = arrayRoom.length; //roomStatus coge el número de users que hay en el array.
 
-        //Comparamos roomStatus, si es mayor que 5 nos dice que la sala está llena, sino pasa a añadir el user.
-        if (roomStatus > 5){
+        //Comprobamos si el usuario ya está apuntado en la clase.
+        for (let i=0; i < roomStatus; i++){
+            if (arrayRoom[i] == member){
+                throw new Error ( "Ya estabas suscrito a esta clase.");  
+            }
+        }
+
+        //Comparamos roomStatus, si es mayor que 10 nos dice que la sala está llena, sino pasa a añadir el user.
+        if (roomStatus > 10){
             throw new Error ( "La clase está llena.");  
         }
+
 
         //Esta parte nos añade el usuario a la clase si hay sitio disponible.
         return Room.findByIdAndUpdate(
             {_id: id},
-            {$push: {members: member}});
-        
+            {$push: {members: member}});        
     }
 
     async joinRoomCoach(data){
