@@ -84,7 +84,8 @@ o
         console.log(monitor, "<<<=== Datos del monitor que nos da la clase");
 
         //Compara especialidad de la room y el coach.
-        let nombre = rooms.name;
+        let nombre = [];
+        nombre = rooms.name;
         let num = monitor.speciality.length;
         console.log(num, "<<<=== Datos de especialidad del monitor");
         for(let x = 0; x < num; x++){
