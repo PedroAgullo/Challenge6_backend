@@ -1,7 +1,6 @@
 const User = require('../models/user');
 const Monitor = require('../models/monitor');
 const Room = require('../models/room');
-const prueba = require('../controllers/roomController.js');
 
 class Sala {
 
@@ -59,43 +58,33 @@ class Sala {
             throw new Error ( "La clase está llena.");  
         }
 
-
         //Esta parte nos añade el usuario a la clase si hay sitio disponible.
         return Room.findByIdAndUpdate(
             {_id: id},
             {$push: {members: member}});        
     }
 
+
+o
     async joinRoomCoach(data){
         const id = data.id;
         const coach = data.coach;  
-        console.log(id,"ID que le pasasmos por Postman");
         let rooms = [];
+        //Nos busca la room donde quiere entrar el coach
         rooms = await Room.find(
             {_id: id},
             );
-    
-        let ocupado = [];
-        let prueba = [];
 
+        //Busca las rooms donde tiene ya clase en esa hora y día.
+       let ocupado = [];
         ocupado = await Room.find(
             {   coaches: coach,
                 date: rooms[0].date}
-        ) 
+        )
         
-     console.log(ocupado, "Clases que tiene a la misma hora");
-        if (ocupado != prueba){
+        if (ocupado[0] != ""){
             throw new Error ( "Ya tienes una clase a esa hora."); 
         }
-
-        console.log(ocupado, "<<<<==== Rooms que tienen la misma fecha y el mismo profesor")
-
-
-
-
-
-
-  
         
         let arrayRoom = [];  //Declaramos el array vacio.
 
