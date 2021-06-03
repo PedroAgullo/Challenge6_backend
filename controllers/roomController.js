@@ -70,10 +70,35 @@ o
         const id = data.id;
         const coach = data.coach;  
         let rooms = [];
+        let monitor;
+
         //Nos busca la room donde quiere entrar el coach
         rooms = await Room.find(
             {_id: id},
             );
+            
+        console.log(rooms, "Datos de la clase");
+        console.log(rooms.name, "Especialidad");
+
+        monitor = await Monitor.findById(coach);
+        console.log(monitor, "<<<=== Datos del monitor que nos da la clase");
+
+        //Compara especialidad de la room y el coach.
+        let nombre = rooms.name;
+        let num = monitor.speciality.length;
+        console.log(num, "<<<=== Datos de especialidad del monitor");
+        for(let x = 0; x < num; x++){
+            console.log(nombre, "Nombre de la clase");
+            console.log(monitor.speciality[x], "Especialidad del coach");
+            if (nombre == monitor.speciality[x]){   
+                return    
+            }else{
+                throw new Error ( "No tienes esa especialidad. No puedes dar la clase"); 
+            }
+
+        }
+
+
 
         //Busca las rooms donde tiene ya clase en esa hora y día.
        let ocupado = [];
@@ -82,7 +107,9 @@ o
                 date: rooms[0].date}
         )
         
-        if (ocupado[0] != ""){
+
+
+        if (ocupado[0] != null){
             throw new Error ( "Ya tienes una clase a esa hora."); 
         }
         
