@@ -2,6 +2,7 @@ const router = require("express").Router();
 const monitorController = require("../controllers/monitorController.js");
 const authenticate = require("../middleware/authenticate.js");
 const admin = require("../middleware/admin.js");
+const monitor = require("../middleware/monitor.js");
 
 //GET - Return all Users in the DB
 
@@ -41,7 +42,7 @@ router.post("/email", admin, async (req, res) => {
 });
 
 //Modify a user
-router.put("/", authenticate, async (req, res) => {
+router.put("/", monitor, async (req, res) => {
   try {
     const data = req.body;
     res.json(await monitorController.modifyMonitor(data));
@@ -51,5 +52,18 @@ router.put("/", authenticate, async (req, res) => {
     });
   }
 });
+
+
+/* router.post('/addmessage', async (req, res) => {
+  try{
+      const data = req.body;
+      res.json(await roomController.addMessage(data));
+  }catch (err){
+      return res.status(500).json({
+          message: err.message
+      })
+  }
+}); */
+
 
 module.exports = router;

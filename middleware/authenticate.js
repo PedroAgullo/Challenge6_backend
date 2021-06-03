@@ -3,7 +3,7 @@ const secret = "Los mas jovenes del Bootcamp";
 const authenticate = (req, res, next) => {
     try {
         if(!req.headers.authorization) {
-            throw new Error ("No tienes autorizacion");
+            throw new Error ("Tienes que hacer login para realizar esta acción.");
         }
         let token = req.headers.authorization.split(' ')[1];
         let auth = jwt.verify(token, secret);

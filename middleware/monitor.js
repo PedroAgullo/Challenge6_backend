@@ -1,14 +1,20 @@
 const jwt = require('jsonwebtoken');
 const secret = "Los mas jovenes del Bootcamp";
-const admin = (req, res, next) => {
+const coach = require('../controllers/monitorController.js');
+
+const monitor = async (req, res, next) => {
     try {
         if(!req.headers.authorization) {
             throw new Error ("Tienes que hacer login para realizar esta acción.");
         }
         let token = req.headers.authorization.split(' ')[1];
         let auth = jwt.verify(token, secret);
-        if((auth.isAdmin === false)){
-            throw new Error ( "No tienes permiso para realizar esta accion");    
+        
+        
+        let isMonitor = await coach.findMonitorById(auth.id);
+        
+        if((isMonitor === null) && (auth.isAdmin === false)){
+            throw new Error ( "Solo los monitores o los Admin están autorizados.");    
         }
         return next();
     } catch (err) {
@@ -17,4 +23,4 @@ const admin = (req, res, next) => {
         })
     }
 }
-module.exports = admin;
+module.exports = monitor;

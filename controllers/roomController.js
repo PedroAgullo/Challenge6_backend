@@ -61,7 +61,32 @@ class Sala {
 
     async joinRoomCoach(data){
         const id = data.id;
-        const coach = data.coach;                
+        const coach = data.coach;    
+        
+        let arrayRoom = [];  //Declaramos el array vacio.
+
+        //Encontramos la room mediante el id. Nos devuelve la coleccion completa.
+        let room = await Room.findById(id);
+
+        arrayRoom = room.coaches;  //Metemos en arrayRoom el array completo de usuarios de la actividad.
+        let roomStatus = arrayRoom.length; //roomStatus coge el número de users que hay en el array.
+
+        //Comprobamos si el usuario ya está apuntado en la clase.
+        for (let i=0; i < roomStatus; i++){
+            if (arrayRoom[i] == coach){
+                throw new Error ( "Ya tienes esta clase asignada.");  
+            }
+        }
+
+        //Comparamos roomStatus, si es mayor que 10 nos dice que la sala está llena, sino pasa a añadir el user.
+        if (roomStatus >= 1){
+            throw new Error ( "Ya hay un monitor asignado a esta clase.");  
+        }
+
+
+
+
+
         return Room.findByIdAndUpdate(
             {_id: id},
             {$push: {coaches: coach}});
@@ -85,6 +110,9 @@ class Sala {
             {$pull: {coaches: coach}});
     }
 
+    async deleteRoom(id){
+        return Room.findByIdAndRemove(id);
+    }
 
 /*     async addMessage(data){
 

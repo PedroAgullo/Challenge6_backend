@@ -8,6 +8,10 @@ class Profesor {
     return Monitor.find();
   }
 
+  async findMonitorById(){
+    return Monitor.findById()
+  }
+
   async createMonitor(monitor) {
     monitor.password = await bcrypt.hash(monitor.password, 10);
     return Monitor.create(monitor);
