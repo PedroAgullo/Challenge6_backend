@@ -171,30 +171,7 @@ class Sala {
         return Room.findByIdAndRemove(id);
     }
 
-/*     async addMessage(data){
 
-        const id = data.id;
-        const userId = data.userId;
-
-        const usuarioName = await User.findById(userId);
-
-        let mensaje = {
-            idUser: data.userId,
-            usuario: usuarioName.name,
-            text: data.texto,
-            fecha: data.fecha,
-            reportado: data.reportado,
-            entregado: data.entregado,
-            leido: data.leido
-        };
-
-        console.log(mensaje);
-
-        return Room.findByIdAndUpdate(
-            {_id: id},
-            {$push: {mensajes: mensaje}});
-        
-    } */
 
 }
 

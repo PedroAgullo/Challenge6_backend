@@ -34,6 +34,29 @@ class Profesor {
     );
     
   }
+
+  async addMessage(data){
+
+        const id = data.id; // id Monitor
+        //const userId = data.userId; // id Usuario
+
+        //const usuarioName = await User.findById(userId);
+
+        let mensaje = {
+            idUser: data.userId,
+            //usuario: usuarioName.name,
+            text: data.texto,
+            fecha: Date.now(),
+            rating: data.rating
+        };
+
+        console.log(mensaje);
+
+        return Monitor.findByIdAndUpdate(
+            {_id: id},
+            {$push: {review: mensaje}});
+        
+    } 
 }
 
 let monitorController = new Profesor();

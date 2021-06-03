@@ -54,16 +54,16 @@ router.put("/", monitor, async (req, res) => {
 });
 
 
-/* router.post('/addmessage', async (req, res) => {
+router.post('/addmessage', async (req, res) => {
   try{
       const data = req.body;
-      res.json(await roomController.addMessage(data));
+      res.json(await monitorController.addMessage(data));
   }catch (err){
       return res.status(500).json({
           message: err.message
       })
   }
-}); */
+}); 
 
 
 module.exports = router;

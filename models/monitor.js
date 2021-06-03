@@ -56,6 +56,9 @@ const monitorSchema = new Schema({
     type: Array,
     required: true,
   },
+  review: {
+    type: Array,
+  },
 });
 
 const toJSONConfig = {
