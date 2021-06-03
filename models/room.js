@@ -20,11 +20,9 @@ const roomSchema = new Schema({
     },
     coaches: {
         type: Array,
-        unique: true,
     },
     members: {
         type: Array,
-        unique: true,
     },
     // mensajes: {
     //     type: Array
@@ -32,6 +30,10 @@ const roomSchema = new Schema({
     isActive: {
         type: Boolean,
         default: true
+    },
+    maxMember:{
+        type: Number,
+        default: 5
     }
 });
 

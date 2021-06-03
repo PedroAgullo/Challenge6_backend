@@ -23,10 +23,7 @@ class Sala {
         let arrayRoom = [];  //Declaramos el array vacio.
 
         //Encontramos la room mediante el id. Nos devuelve la coleccion completa.
-        let room = await Room.findOne(
-            {_id: id}
-        )
-
+        let room = await Room.findById(id);
 
         arrayRoom = room.members;  //Metemos en arrayRoom el array completo de usuarios de la actividad.
         let roomStatus = arrayRoom.length; //roomStatus coge el número de users que hay en el array.
@@ -39,7 +36,7 @@ class Sala {
         }
 
         //Comparamos roomStatus, si es mayor que 10 nos dice que la sala está llena, sino pasa a añadir el user.
-        if (roomStatus > 10){
+        if (roomStatus > 6){
             throw new Error ( "La clase está llena.");  
         }
 
