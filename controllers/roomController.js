@@ -20,6 +20,15 @@ class Sala {
         );
     }
 
+    async findAllRoomsActivity(body){
+        return Room.find(
+            {name: body.name, isActive: "true"},
+        );
+        
+         
+    }
+    
+
     async findByDate(fecha){
         return Room.find(
             {date: fecha}
@@ -64,8 +73,6 @@ class Sala {
             {$push: {members: member}});        
     }
 
-
-o
     async joinRoomCoach(data){
         const id = data.id;
         const coach = data.coach;  
@@ -78,28 +85,28 @@ o
             );
             
         console.log(rooms, "Datos de la clase");
-        console.log(rooms.name, "Especialidad");
+        console.log(rooms[0].name, "Especialidad");
 
         monitor = await Monitor.findById(coach);
         console.log(monitor, "<<<=== Datos del monitor que nos da la clase");
 
+
+
+
         //Compara especialidad de la room y el coach.
         let nombre = [];
-        nombre = rooms.name;
+        nombre = rooms[0].name;
         let num = monitor.speciality.length;
-        console.log(num, "<<<=== Datos de especialidad del monitor");
+        let y = false;
         for(let x = 0; x < num; x++){
-            console.log(nombre, "Nombre de la clase");
-            console.log(monitor.speciality[x], "Especialidad del coach");
             if (nombre == monitor.speciality[x]){   
-                return    
-            }else{
-                throw new Error ( "No tienes esa especialidad. No puedes dar la clase"); 
+                  y = true;
             }
-
         }
 
-
+        if (y == false){
+            throw new Error ( "No tienes esa especialidad. No puedes dar la clase"); 
+        }
 
         //Busca las rooms donde tiene ya clase en esa hora y día.
        let ocupado = [];
@@ -107,7 +114,6 @@ o
             {   coaches: coach,
                 date: rooms[0].date}
         )
-        
 
 
         if (ocupado[0] != null){

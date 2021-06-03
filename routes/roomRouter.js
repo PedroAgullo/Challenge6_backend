@@ -39,6 +39,21 @@ router.get('/noactive', admin, async (req, res) => {
 });
 
 
+//POST - Find All Activities
+
+router.post('/activity', async (req,res) => {
+    try {
+        const room = req.body;
+        res.json(await roomController.findAllRoomsActivity(room));
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        })
+    }
+})
+
+
+
 //POST - Creates a new room
 
 router.post('/', monitor, async (req,res) => {
