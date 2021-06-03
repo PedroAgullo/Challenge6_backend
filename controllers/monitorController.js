@@ -1,4 +1,5 @@
 const Monitor = require("../models/monitor");
+const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
 class Profesor {
@@ -38,13 +39,13 @@ class Profesor {
   async addMessage(data){
 
         const id = data.id; // id Monitor
-        //const userId = data.userId; // id Usuario
+        const userId = data.userId; // id Usuario
 
-        //const usuarioName = await User.findById(userId);
+        const usuarioName = await User.findById(userId);
 
         let mensaje = {
             idUser: data.userId,
-            //usuario: usuarioName.name,
+            usuario: usuarioName.name,
             text: data.texto,
             fecha: Date.now(),
             rating: data.rating
