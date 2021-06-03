@@ -8,8 +8,8 @@ class Profesor {
     return Monitor.find();
   }
 
-  async findMonitorById(){
-    return Monitor.findById()
+  async findMonitorById(id){
+    return Monitor.findById(id);
   }
 
   async createMonitor(monitor) {

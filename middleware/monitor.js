@@ -12,7 +12,6 @@ const monitor = async (req, res, next) => {
         
         
         let isMonitor = await coach.findMonitorById(auth.id);
-        
         if((isMonitor === null) && (auth.isAdmin === false)){
             throw new Error ( "Solo los monitores o los Admin están autorizados.");    
         }
