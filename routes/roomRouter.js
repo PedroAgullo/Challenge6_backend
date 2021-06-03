@@ -16,6 +16,27 @@ router.get('/', async (req, res) => {
 });
 
 
+router.get('/active', async (req, res) => {
+    try {
+        res.json(await roomController.findAllRoomsActive())
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+router.get('/noactive', async (req, res) => {
+    try {
+        res.json(await roomController.findAllRoomsNoActive())
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+
 //POST - Creates a new room
 
 router.post('/', async (req,res) => {

@@ -8,6 +8,18 @@ class Sala {
         return Room.find();
     }
 
+    async findAllRoomsActive(){
+        return Room.find(
+            {isActive: "true"},
+        );
+    }
+
+    async findAllRoomsNoActive(){
+        return Room.find(
+            {isActive: "false"},
+        );
+    }
+
     async deleteRoom(id){
         return Room.findByIdAndRemove(id);
     }
