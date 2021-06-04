@@ -39,9 +39,11 @@ class Sala {
     const id = data.id;
     const member = data.member;
 
+    let user = await User.findById(data.member);
+
 
     //Comprueba si está suscrito.
-    if (member.subscription == "Pendiente"){
+    if (user.subscription == "Pendiente"){
         throw new Error("Pasa por administración para regular tu subscripción.");
     }
 
