@@ -28,7 +28,28 @@ class Sala {
   }
 
   async updateStatusRoom(data) {
-    return Room.findByIdAndUpdate({_id: data.id}, {isActive:  data.isActive});
+    let clase = await Room.findById(data.id);
+    let userArray = clase.members;
+    var listaArray = [];
+
+    // Buscar los usuarios dentro de la clase para enviar email para review
+    for (var x = 0; x < userArray.length; x++) {
+      var usuario = await User.findById(userArray[x]);
+
+      let lista = {
+        usuario: usuario.name,
+        email: usuario.email,
+      };
+
+      listaArray[x] = lista;
+    }
+
+    listaArray[x] =
+      "Clase terminada. Enviar correos para review a los usuarios de la clase";
+
+    // Update Active status
+    Room.findByIdAndUpdate({ _id: data.id }, { isActive: data.isActive });
+    return listaArray;
   }
 
   async createRoom(room) {
@@ -41,10 +62,9 @@ class Sala {
 
     let user = await User.findById(data.member);
 
-
     //Comprueba si está suscrito.
-    if (user.subscription == "Pendiente"){
-        throw new Error("Pasa por administración para regular tu subscripción.");
+    if (user.subscription == "Pendiente") {
+      throw new Error("Pasa por administración para regular tu subscripción.");
     }
 
     let arrayRoom = []; //Declaramos el array vacio.
@@ -81,7 +101,7 @@ class Sala {
     rooms = await Room.find({ _id: id });
 
     //console.log(rooms, "Datos de la clase");
-   //console.log(rooms[0].name, "Especialidad");
+    //console.log(rooms[0].name, "Especialidad");
 
     monitor = await Monitor.findById(coach);
     //console.log(monitor, "<<<=== Datos del monitor que nos da la clase");
