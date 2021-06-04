@@ -12,7 +12,7 @@
 
 :eye_speech_bubble: [Phase I - Creating the Backend](#id4)
 
-:eye_speech_bubble: [Required and extra endpoints](#id5)
+:exclamation: [Required and extra endpoints](#id5)
 
 :mailbox: [Postman](#id6)
 
@@ -189,9 +189,10 @@ npm start
 
 1. <h3>index.js</h3>
 
-In this file we found the file all dependencies we need to import, also we setup the middlewares and the server.
-<summary>Click the arrow to see index.js's code</summary>
+In this file we found the file all dependencies we need to import, also we setup the middlewares and the server.`
 <details>
+<summary>Click the arrow to see index.js's code</summary>
+
 ```javascript
 const express = require('express');
 const router = require('./router');
@@ -213,7 +214,24 @@ app.listen(port, () => console.log(`Node server running on http://localhost:${po
 ```
 </details>
 
-2. <h3>router.js</h3>
+2. <h3>mongoose.js</h3>
+Create **mongoose.js** to conect the data base.
+
+```javascript
+const mongoose = require("mongoose");
+const QUERY_STRING =
+  "mongodb+srv://admin:Admin1234@cluster0.oayl4.mongodb.net/dbGym?retryWrites=true&w=majority";
+
+// Connection to DB
+const db = mongoose
+  .connect(QUERY_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(console.log("Conectado a la base de datos"))
+  .catch((error) => console.log(error));
+
+module.exports = db;
+```
+
+3. <h3>router.js</h3>
 
 * We have to call Node Express.
 ```javascript
@@ -239,7 +257,7 @@ router.use('/monitor', monitorRouter);
 module.exports = router;
 ```
 
-3. <h3>controllers</h3>
+4. <h3>controllers</h3>
 
 Controllers contain the class and callback functions which we pass to the router's methods. 
 
@@ -270,7 +288,7 @@ let monitorController = new Profesor();
 module.exports = monitorController;
 ```
 
-4. <h3>routes</h3>
+5. <h3>routes</h3>
 
 A route is a section of Express code that associates an HTTP verb (GET, POST, PUT, DELETE, etc.), a URL path/pattern, and a function that is called to handle that pattern.
 
@@ -299,13 +317,62 @@ router.get("/", admin, async (req, res) => {
 </details>
 
 <a name="id5"></a>
-##Required and extra endpoints
+##Required endpoints
+
+  * User Register
+  * User Login
+  * Pending gym classes (Active)
+  * Delete gym classes 
+  * Create a new gym classes
+
 
 <a name="id6"></a>
-***
-## **Postman**
+##Additional endpoints
 
->Postman is a collaboration platform for API development. Postman's features simplify each step of building an API and streamline collaboration so you can create better APIs—faster.
+**Monitor**
+
+  * Monitor Register
+  * Monitor Login
+  * Find all monitors
+  * Find monitor by Id
+  * Find monitor by email
+  * Modify Monitor
+  * Review Monitor by message
+ 
+**Room**
+
+  * Join a user to the gym class:
+    - Verify if the user have a valid subscription (annual, month or pending payment).
+    - Check if the user is already registered in that class.
+    - Verify if the capacity of the class has been reached. 
+  * Join a coach to the gym class:
+    - Check if the trainer's speciality matches the gym classes to be taught.
+    - Verify if that trainer doesn't have already a class at that time and day.
+    - Check that there is no more than one trainer signed up to teach the class.
+  * All gym classes
+  * All inactive gym classes
+  * Find gym classes by date  
+  * Delete gym classes
+  * Update gym classes status (create list of assistants to send an email for monitor review)
+  * Monitor Leave the class.
+  * User Leave the class.
+
+**User**
+
+  * Find all users
+  * Find Users by email
+  * Modify User
+  * Update status member (annual, mensual or pending payment).
+
+
+<a name="id7"></a>
+***
+## **Postman and Atlas**
+
+>**Postman** is a collaboration platform for API development. Postman's features simplify each step of building an API and streamline collaboration so you can create better APIs—faster.
+
+>**MongoDB Atlas** is the global cloud database service for modern applications.
+Deploy fully managed MongoDB across AWS, Google Cloud, and Azure with best-in-class automation and proven practices that guarantee availability, scalability, and compliance with the most demanding data security and privacy standards.
 
 **Example of endpoints on Postman**
 <details>
@@ -314,40 +381,18 @@ router.get("/", admin, async (req, res) => {
 
 ![Captura](img/imgPostmanAllOrders.JPG)
 
-![Captura](img/imgPostmanAllOrdersByUser.JPG)
 
-![Captura](img/imgPostmanDeleteOrder.JPG)
-
-![Captura](img/imgPostmanDeleteUser.JPG)
-
-![Captura](img/imgPostmanFindAllUsers.JPG)
-
-![Captura](img/imgPostmanFindByEmail.JPG)
-
-![Captura](img/imgPostmanLogin.JPG)
-
-![Captura](img/imgPostmanModifyOrder.JPG)
-
-![Captura](img/imgPostmanModifyUser.JPG)
-
-![Captura](img/imgPostmanNewOrder.JPG)
-
-![Captura](img/imgPostmanNewUser.JPG)
-
-![Captura](img/imgPostmanOrderById.JPG)
 
 </details>
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/042f2c63c893845e50f1?action=collection%2Fimport)
-
-Or [click here to the API Documentation](https://documenter.getpostman.com/view/15824691/TzXzCGpm)
+[API Documentation](https://documenter.getpostman.com/view/15824691/TzY4gap6)
 
 
-<a name="id7"></a>
+<a name="id8"></a>
 ***
 ## **Thanks**
 
-We would like to thank our teacher, David, for his help and dedication. And to our bootcamp partners for every brainstorming session.
+We would like to thank our teacher, David, for his help and dedication. And to our bootcamp partners for every brainstorming (and daily) session.
 
 <br>
 <br>

@@ -6,12 +6,10 @@ const secret = "Los mas jovenes del Bootcamp";
 
 class LoginController {
   async validateUser(emailCheck, passwordCheck) {
-    //console.log(emailCheck);
     let user = await userController.findByEmail(emailCheck);
-    //console.log(user);
 
     let password = user.password;
-    //console.log(password, "<<<<<==== Password");
+
     let verificar = await bcrypt.compare(passwordCheck, password);
     if (!verificar) {
       return new Error("El password o el email no coinciden");
@@ -25,12 +23,10 @@ class LoginController {
   }
 
   async validateMonitor(emailCheck, passwordCheck) {
-    //console.log(emailCheck);
     let monitor = await monitorController.findByEmailMonitor(emailCheck);
-    //console.log(monitor);
 
     let password = monitor.password;
-    //console.log(password, "<<<<<==== Password");
+
     let verificar = await bcrypt.compare(passwordCheck, password);
     if (!verificar) {
       return new Error("El password o el email no coinciden");

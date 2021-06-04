@@ -32,7 +32,7 @@ class Cliente {
     );
   }
 
-
+// para cambiar la suscripcion del usuario por anual, mensual o pendiente
   async updateStatusMember(data) {
     return User.findByIdAndUpdate(
       { _id: data.id },

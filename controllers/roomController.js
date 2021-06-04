@@ -82,8 +82,8 @@ class Sala {
       }
     }
 
-    //Comparamos roomStatus, si es mayor que 10 nos dice que la sala está llena, sino pasa a añadir el user.
-    if (roomStatus > 6) {
+    //Comparamos roomStatus, si es mayor que 5 nos dice que la sala está llena, sino pasa a añadir el user.
+    if (roomStatus > 5) {
       throw new Error("La clase está llena.");
     }
 
@@ -100,11 +100,7 @@ class Sala {
     //Nos busca la room donde quiere entrar el coach
     rooms = await Room.find({ _id: id });
 
-    //console.log(rooms, "Datos de la clase");
-    //console.log(rooms[0].name, "Especialidad");
-
     monitor = await Monitor.findById(coach);
-    //console.log(monitor, "<<<=== Datos del monitor que nos da la clase");
 
     //Compara especialidad de la room y el coach.
     let nombre = [];
@@ -137,14 +133,14 @@ class Sala {
     arrayRoom = room.coaches; //Metemos en arrayRoom el array completo de usuarios de la actividad.
     let roomStatus = arrayRoom.length; //roomStatus coge el número de users que hay en el array.
 
-    //Comprobamos si el usuario ya está apuntado en la clase.
+    //Comprobamos si el entrenador ya está apuntado en la clase.
     for (let i = 0; i < roomStatus; i++) {
       if (arrayRoom[i] == coach) {
         throw new Error("Ya tienes esta clase asignada.");
       }
     }
 
-    //Comparamos roomStatus, si es mayor que 10 nos dice que la sala está llena, sino pasa a añadir el user.
+    //Comparamos roomStatus, si es mayor que 1 nos dice que la sala está llena, sino pasa a añadir el user.
     if (roomStatus >= 1) {
       throw new Error("Ya hay un monitor asignado a esta clase.");
     }
