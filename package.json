@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/PedroAgullo/Challenge6_backend#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcrypt": "5.0.1",
     "cors": "2.8.5",
     "express": "4.17.1",
     "jsonwebtoken": "8.5.1",

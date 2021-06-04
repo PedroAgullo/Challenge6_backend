@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const secret = "Los mas jovenes del Bootcamp";
+
 const admin = (req, res, next) => {
   try {
     if (!req.headers.authorization) {

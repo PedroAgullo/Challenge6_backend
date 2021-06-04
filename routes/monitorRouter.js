@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Find users by email
+//POST - Find users by email
 router.post("/email", admin, async (req, res) => {
   try {
     let email = req.body.email;
@@ -41,7 +41,19 @@ router.post("/email", admin, async (req, res) => {
   }
 });
 
-//Modify a user
+//POST - Add a review
+router.post("/addmessage", authenticate, async (req, res) => {
+  try {
+    const data = req.body;
+    res.json(await monitorController.addMessage(data));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
+//PUT - Modify a user
 router.put("/", monitor, async (req, res) => {
   try {
     const data = req.body;
@@ -52,18 +64,5 @@ router.put("/", monitor, async (req, res) => {
     });
   }
 });
-
-
-router.post('/addmessage', async (req, res) => {
-  try{
-      const data = req.body;
-      res.json(await monitorController.addMessage(data));
-  }catch (err){
-      return res.status(500).json({
-          message: err.message
-      })
-  }
-}); 
-
 
 module.exports = router;
