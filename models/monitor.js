@@ -53,9 +53,9 @@ const monitorSchema = new Schema({
     default: true,
   },
   speciality: {
-    type: Array,
-    required: true,
-    enum: [Zumba, Crossfit, Boxeo, Pilates, Yoga, Gap, Cardio, Fuerza]
+    type: [String],
+    enum: ["Zumba", "Crossfit", "Boxeo", "Pilates", "Yoga", "Gap", "Cardio", "Fuerza", "Salsa"],
+    required: true
   },
   review: {
     type: Array,
