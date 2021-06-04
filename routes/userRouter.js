@@ -59,6 +59,18 @@ router.put('/', authenticate, async (req, res)=> {
     }
 });
 
+//Modify status payment a user
+router.put('/payment', admin, async (req, res)=> {
+    try {
+        const data = req.body;
+        res.json(await userController.updateStatusMember(data));
+        
+    } catch (err) {
+        return res.status(500).json({
+            mensaje: err.message
+        });
+    }
+});
 
   
 module.exports = router;

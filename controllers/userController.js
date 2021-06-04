@@ -31,6 +31,19 @@ class Cliente {
       { new: true, omitUndefined: true }
     );
   }
+
+
+  async updateStatusMember(data) {
+    return User.findByIdAndUpdate(
+      { _id: data.id },
+      //Datos que cambiamos
+      {
+        subscription: data.subscription,
+      },
+      { new: true, omitUndefined: true }
+    );
+  }
+
 }
 
 let userController = new Cliente();
