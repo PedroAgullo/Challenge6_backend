@@ -21,13 +21,15 @@ class Cliente {
     return User.findByIdAndUpdate(
       { _id: data.id },
       //Datos que cambiamos
-      { address: data.address,
-      country: data.country,
-      city: data.city,
-      telephone: data.telephone,
-      isActive: data.isActive },{new:true,omitUndefined:true},
+      {
+        address: data.address,
+        country: data.country,
+        city: data.city,
+        telephone: data.telephone,
+        isActive: data.isActive,
+      },
+      { new: true, omitUndefined: true }
     );
-    
   }
 }
 

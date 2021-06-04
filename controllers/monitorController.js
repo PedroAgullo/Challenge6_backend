@@ -9,7 +9,7 @@ class Profesor {
     return Monitor.find();
   }
 
-  async findMonitorById(id){
+  async findMonitorById(id) {
     return Monitor.findById(id);
   }
 
@@ -26,38 +26,39 @@ class Profesor {
     return Monitor.findByIdAndUpdate(
       { _id: data.id },
       //Datos que cambiamos
-      { address: data.address,
-      country: data.country,
-      city: data.city,
-      telephone: data.telephone,
-      speciality: data.speciality,
-      isActive: data.isActive },{new:true,omitUndefined:true},
+      {
+        address: data.address,
+        country: data.country,
+        city: data.city,
+        telephone: data.telephone,
+        speciality: data.speciality,
+        isActive: data.isActive,
+      },
+      { new: true, omitUndefined: true }
     );
-    
   }
 
-  async addMessage(data){
+  async addMessage(data) {
+    const id = data.id; // id Monitor
+    const userId = data.userId; // id Usuario
 
-        const id = data.id; // id Monitor
-        const userId = data.userId; // id Usuario
+    const usuarioName = await User.findById(userId);
 
-        const usuarioName = await User.findById(userId);
+    let mensaje = {
+      idUser: data.userId,
+      usuario: usuarioName.name,
+      text: data.texto,
+      fecha: Date.now(),
+      rating: data.rating,
+    };
 
-        let mensaje = {
-            idUser: data.userId,
-            usuario: usuarioName.name,
-            text: data.texto,
-            fecha: Date.now(),
-            rating: data.rating
-        };
+    console.log(mensaje);
 
-        console.log(mensaje);
-
-        return Monitor.findByIdAndUpdate(
-            {_id: id},
-            {$push: {review: mensaje}});
-        
-    } 
+    return Monitor.findByIdAndUpdate(
+      { _id: id },
+      { $push: { review: mensaje } }
+    );
+  }
 }
 
 let monitorController = new Profesor();
