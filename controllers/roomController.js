@@ -27,6 +27,10 @@ class Sala {
     return Room.findByIdAndRemove(id);
   }
 
+  async updateStatusRoom(data) {
+    return Room.findByIdAndUpdate({_id: data.id}, {isActive:  data.isActive});
+  }
+
   async createRoom(room) {
     return Room.create(room);
   }
@@ -34,6 +38,12 @@ class Sala {
   async joinRoom(data) {
     const id = data.id;
     const member = data.member;
+
+
+    //Comprueba si está suscrito.
+    if (member.subscription == "Pendiente"){
+        throw new Error("Pasa por administración para regular tu subscripción.");
+    }
 
     let arrayRoom = []; //Declaramos el array vacio.
 

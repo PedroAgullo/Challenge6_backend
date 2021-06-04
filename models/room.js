@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const roomSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    enum: ["Zumba", "Crossfit", "Boxeo", "Pilates", "Yoga", "Gap", "Cardio", "Fuerza", "Salsa", "Spinning"],
+    required: true
   },
   dateStart: {
     type: Date,

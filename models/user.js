@@ -51,7 +51,12 @@ const userSchema = new Schema({
     isActive: {
         type: Boolean,
         default: true
-    }
+    },
+    subscription: {
+        type: String,
+        enum: ["Mensual", "Anual", "Pendiente"],
+        required: true
+      },
 });
 
 const toJSONConfig = {

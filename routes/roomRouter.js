@@ -128,6 +128,16 @@ router.delete('/', monitor, async (req, res) => {
     }
 })
 
+router.put('/', monitor, async (req, res) => {
+    try{
+        const data = req.body;
+        res.json(await roomController.updateStatusRoom(data));
+    }catch (err){
+        return res.status(500).json({
+            message: err.message
+        })
+    }
+})
 
 
 module.exports = router;
