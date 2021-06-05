@@ -40,7 +40,7 @@ class Profesor {
 
   async addMessage(data) {
     const id = data.id; // id Monitor
-    const userId = data.userId; // id Usuario
+    const userId = data.member; // id Usuario
 
     const usuarioName = await User.findById(userId);
 
@@ -49,7 +49,7 @@ class Profesor {
     fecha.toUTCString();
   
     let mensaje = {
-      idUser: data.userId,
+      idUser: data.member,
       usuario: usuarioName.name,
       text: data.texto,
       fecha: fecha,

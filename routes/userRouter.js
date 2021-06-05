@@ -2,6 +2,7 @@ const router = require("express").Router();
 const userController = require("../controllers/userController.js");
 const authenticate = require("../middleware/authenticate.js");
 const admin = require("../middleware/admin.js");
+const userCheckMail = require('../middleware/userCheckMail');
 
 //GET - Return all Users in the DB
 
