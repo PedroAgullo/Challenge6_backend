@@ -372,7 +372,8 @@ router.get("/", admin, async (req, res) => {
   * Find all locker rented.
   * Create a new locker.
   * Rent a locker.
-  
+  * Update status locker.
+
 
 <a name="id7"></a>
 ***
