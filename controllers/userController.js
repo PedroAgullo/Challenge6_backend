@@ -19,7 +19,7 @@ class Cliente {
 
   async modifyUser(data) {
     return User.findByIdAndUpdate(
-      { _id: data.id },
+      { _id: data.member },
       //Datos que cambiamos
       {
         address: data.address,
