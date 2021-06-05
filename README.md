@@ -243,6 +243,7 @@ const userRouter = require('./routes/userRouter.js');
 const roomRouter = require('./routes/roomRouter.js');
 const loginRouter = require('./routes/loginRouter.js');
 const monitorRouter = require('./routes/monitorRouter.js');
+const lockerRouter = require('./routes/lockerRouter.js');
 ```
 * This says that when the user puts the path where it should go.
 ```javascript
@@ -250,6 +251,7 @@ router.use('/user', userRouter);
 router.use('/room', roomRouter);
 router.use('/login', loginRouter);
 router.use('/monitor', monitorRouter);
+router.use('/locker', lockerRouter);
 ```
 
 * Finally export the file routers.
@@ -261,7 +263,7 @@ module.exports = router;
 
 Controllers contain the class and callback functions which we pass to the router's methods. 
 
-We will need one for each model, Monitor, Room and User, and an additional to the login.
+We will need one for each model, Monitor, Room, User, Locker, and an additional to the login.
 
 This is an example in class Monitor, a function to modify the information:
 
@@ -364,6 +366,13 @@ router.get("/", admin, async (req, res) => {
   * Modify User
   * Update status member (annual, mensual or pending payment).
 
+ **Locker** 
+  * Find all locker
+  * Find all available locker
+  * Find all locker rented.
+  * Create a new locker.
+  * Rent a locker.
+  
 
 <a name="id7"></a>
 ***

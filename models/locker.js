@@ -19,7 +19,11 @@ const lockerSchema = new Schema({
   },
   date: {
     type:Date,
-  }
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
 });
 
 const toJSONConfig = {
