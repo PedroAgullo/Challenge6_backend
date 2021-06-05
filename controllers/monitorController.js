@@ -44,7 +44,8 @@ class Profesor {
 
     const usuarioName = await User.findById(userId);
 
-    fecha = Date.now();
+    const tiempo = Date.now();
+    let fecha = new Date(tiempo);
     fecha.toUTCString();
   
     let mensaje = {

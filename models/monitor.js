@@ -82,5 +82,5 @@ const toJSONConfig = {
 
 monitorSchema.set("toJSON", toJSONConfig);
 
-const User = mongoose.model("Monitor", monitorSchema);
-module.exports = User;
+const Monitor = mongoose.model("Monitor", monitorSchema);
+module.exports = Monitor;
