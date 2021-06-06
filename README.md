@@ -34,7 +34,7 @@ This project is part of the [GeeksHubs Academy](https://bootcamp.geekshubsacadem
 
 
 **Contributors:**
-* [Pedro Agull Marco](https://github.com/PedroAgullo)
+* [Pedro Agulló Marco](https://github.com/PedroAgullo)
 * [Mariana Fernández Sacristán](https://github.com/mlfernandez)
 
 **Trello:**
