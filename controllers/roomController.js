@@ -83,7 +83,7 @@ class Sala {
     }
 
     //Comparamos roomStatus, si es mayor que 5 nos dice que la sala está llena, sino pasa a añadir el user.
-    if (roomStatus > 5) {
+    if (roomStatus > 4) {
       throw new Error("La clase está llena.");
     }
 

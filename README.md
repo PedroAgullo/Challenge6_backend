@@ -389,7 +389,21 @@ Deploy fully managed MongoDB across AWS, Google Cloud, and Azure with best-in-cl
 <summary>Click to see the endpoints on Postman.</summary>
 
 
-![Captura](img/imgPostmanAllOrders.JPG)
+![Captura](img/postman1addnewlocker.JPG)
+![Captura](img/postman2getalllockers.JPG)
+![Captura](img/postman3getavailablelocker.JPG)
+![Captura](img/postman4changestatuslocker.JPG)
+![Captura](img/postman5reantalocker.JPG)
+![Captura](img/postman6newmonitor.JPG)
+![Captura](img/postman7modifymonitor.JPG)
+![Captura](img/postman8addreview.JPG)
+![Captura](img/postman9newroom.JPG)
+![Captura](img/postman10jointoroom.JPG)
+![Captura](img/postman11allactivities.JPG)
+![Captura](img/postman12leaveroom.JPG)
+![Captura](img/postman13newuser.JPG)
+![Captura](img/postman14modifypayment.JPG)
+
 
 
 
