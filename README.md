@@ -37,6 +37,11 @@ This project is part of the [GeeksHubs Academy](https://bootcamp.geekshubsacadem
 * [Pedro Agull Marco](https://github.com/PedroAgullo)
 * [Mariana Fernández Sacristán](https://github.com/mlfernandez)
 
+**Trello:**
+
+For this project we worked mostly simultaneously, and we used Trello to organise ourselves, to draw up the list of requirements and to see in detail how we were progressing and what we were missing.
+
+![Captura](img/trello.JPG)
 ---
 
 <a name="id2"></a>
@@ -416,7 +421,7 @@ Deploy fully managed MongoDB across AWS, Google Cloud, and Azure with best-in-cl
 ***
 ## **Thanks**
 
-We would like to thank our teacher, David, for his help and dedication. And to our bootcamp partners for every brainstorming (and daily) session.
+We would like to thank our teacher, David. And to our bootcamp partners for every brainstorming (and daily) session.
 
 <br>
 <br>
