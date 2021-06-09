@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  token : {
+    type: String,
+    default: ""
+  },
   birthday: {
     type: Date,
     required: true,
@@ -43,6 +47,7 @@ const userSchema = new Schema({
   },
   telephone: {
     type: String,
+    unique: true
   },
   isAdmin: {
     type: Boolean,
@@ -50,13 +55,21 @@ const userSchema = new Schema({
   },
   isActive: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   subscription: {
     type: String,
     enum: ["Mensual", "Anual", "Pendiente"],
     required: true,
   },
+  photo: {
+    type: String,
+    default : ""
+  },
+  qrCode: {
+    type: String,
+    default : ""
+  }
 });
 
 const toJSONConfig = {

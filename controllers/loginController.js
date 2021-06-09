@@ -7,13 +7,22 @@ const secret = "Los mas jovenes del Bootcamp";
 class LoginController {
   async validateUser(emailCheck, passwordCheck) {
     let user = await userController.findByEmail(emailCheck);
+    
+    if (user == null) {
+      throw new Error("El password o el email son incorrectos.");
+    }
 
     let password = user.password;
 
     let verificar = await bcrypt.compare(passwordCheck, password);
     if (!verificar) {
-      return new Error("El password o el email no coinciden");
+      throw new Error("El password o el email son incorrectos.");
     }
+
+    if (!user.isActive) {
+      throw new Error("La cuenta no está activa. Por favor, revisa tu correo electrónico y activa tu cuenta.");
+    }
+
     let payload = {
       id: user._id,
       createdAt: new Date(),
@@ -21,6 +30,11 @@ class LoginController {
     };
     return jwt.sign(payload, secret);
   }
+
+
+
+
+
 
   async validateMonitor(emailCheck, passwordCheck) {
     let monitor = await monitorController.findByEmailMonitor(emailCheck);

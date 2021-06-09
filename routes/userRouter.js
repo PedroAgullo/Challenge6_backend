@@ -30,6 +30,8 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
 // POST Find users by email
 
 router.post("/email", admin, async (req, res) => {
@@ -61,7 +63,7 @@ router.put("/", authenticate, async (req, res) => {
 router.put("/payment", admin, async (req, res) => {
   try {
     const data = req.body;
-    res.json(await userController.updateStatusMember(data));
+    res.json(await userController.updateSuscription(data));
   } catch (err) {
     return res.status(500).json({
       mensaje: err.message,
@@ -69,4 +71,18 @@ router.put("/payment", admin, async (req, res) => {
   }
 });
 
+
+// Mail confirmation
+router.get("/confirm/:confirmationCode", async (req, res) => {
+  try {
+    token = req.params.confirmationCode;
+    res.json(await userController.updateActive(token));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
 module.exports = router;
+
