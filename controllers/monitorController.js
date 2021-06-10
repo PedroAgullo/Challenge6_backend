@@ -9,6 +9,21 @@ class Profesor {
     return Monitor.find();
   }
 
+  async findAllMonitorName() {
+     let data = await Monitor.find();
+    console.log(data, "Datos devueltos del monitor");
+    let num = data.length;
+    var monitor=[];
+      for(let x = 0; x < num; x++){
+    
+          monitor[x] = {
+            _id : data[x]._id,
+            name : data[x].name
+          }
+      }
+     return monitor;
+  }
+
   async findMonitorById(id) {
     return Monitor.findById(id);
   }

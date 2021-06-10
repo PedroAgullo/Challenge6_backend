@@ -19,9 +19,6 @@ class Cliente {
     for (let i = 0; i < 25; i++) {
         token += characters[Math.floor(Math.random() * characters.length )];
     }
-    console.log(token, "<<<<===== TOKEN CREADA");
-    // user.token = token;
-    console.log(user.token, "<<<<===== user.token");
     user = {
       name : user.name,
       lastName1: user.lastName1,
@@ -38,11 +35,12 @@ class Cliente {
       token: token
     }
 
-    console.log(user, "<<<==== Usuario con token");
+    console.log(user, "<<<==== Creado datos para pasarle a la funcion create");
     let usuario = await User.create(user);
 
-    console.log(usuario);
-    console.log(usuario._id);
+    console.log(usuario, "<<<<==== Datos del usuario que hemos creado");
+
+
 
 
 

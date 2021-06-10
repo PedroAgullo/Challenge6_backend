@@ -19,9 +19,9 @@ router.get("/", admin, async (req, res) => {
 //POST - Creates a new user
 
 router.post("/", async (req, res) => {
-  try {
+  try {    
     const user = req.body;
-    console.log(user);
+    console.log(user, "<<<<==== Datos que llegan a userRouter");
     res.json(await userController.createUser(user));
   } catch (err) {
     return res.status(500).json({

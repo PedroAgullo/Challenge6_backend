@@ -4,7 +4,7 @@ const authenticate = require("../middleware/authenticate.js");
 const admin = require("../middleware/admin.js");
 const monitor = require("../middleware/monitor.js");
 
-//GET - Return all Users in the DB
+//GET - Return all monitor in the DB
 
 router.get("/", admin, async (req, res) => {
   try {
@@ -15,6 +15,22 @@ router.get("/", admin, async (req, res) => {
     });
   }
 });
+
+
+//GET - Return all monitor name and ID.
+router.get("/name", async (req, res) => {
+  try {
+    res.json(await monitorController.findAllMonitorName());
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
+
+
+
 
 //POST - Creates a new user
 
