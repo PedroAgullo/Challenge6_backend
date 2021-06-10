@@ -94,6 +94,7 @@ class Sala {
   async joinRoomCoach(data) {
     const id = data.id;
     const coach = data.coach;
+    const nameCoach = data.nameCoach;
     let rooms = [];
     let monitor;
 
@@ -145,7 +146,7 @@ class Sala {
       throw new Error("Ya hay un monitor asignado a esta clase.");
     }
 
-    return Room.findByIdAndUpdate({ _id: id }, { $push: { coaches: coach } });
+    return Room.findByIdAndUpdate({ _id: id }, { $push: { coaches: coach, nameCoach: nameCoach } });
   }
 
   async leaveRoom(data) {

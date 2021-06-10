@@ -27,7 +27,10 @@ const roomSchema = new Schema({
     required: true,
   },
   coaches: {
-    type: Array,
+    type: Array,    
+  },
+  nameCoach: {
+    type: Array
   },
   members: {
     type: Array,
