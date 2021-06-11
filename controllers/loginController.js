@@ -32,10 +32,6 @@ class LoginController {
   }
 
 
-
-
-
-
   async validateMonitor(emailCheck, passwordCheck) {
     let monitor = await monitorController.findByEmailMonitor(emailCheck);
 

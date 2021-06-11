@@ -11,6 +11,31 @@ class Sala {
     return Room.find({ isActive: "true" });
   }
 
+  async findMyRooms(user) {
+    let rooms = [];
+    var myRooms = [];
+
+    rooms = await this.findAllRoomsActive();
+    console.log(rooms, "<<<==== Clases activas en la variable rooms");
+    
+
+
+    for(let x = 0; x < rooms.length; x++){
+      var membersArray = rooms[x].members;
+      console.log(rooms[x].members, "Usuarios de cada clase activas");
+      console.log(membersArray, "Total usuarios de la clase. lenght");
+      for (let y = 0; y < membersArray.length; y++){
+        if (rooms[x].members[y] == user.id){
+          myRooms.push(rooms[x])
+        }
+    }
+
+    }
+    
+    return myRooms; 
+  
+  }
+
   async findAllRoomsNoActive() {
     return Room.find({ isActive: "false" });
   }

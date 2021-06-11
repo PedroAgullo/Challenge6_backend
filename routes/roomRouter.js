@@ -40,8 +40,8 @@ router.get("/noactive", admin, async (req, res) => {
   }
 });
 
-//POST - Find All Activities
 
+//POST - Find All Activities
 router.post("/activity", async (req, res) => {
   try {
     const room = req.body;
@@ -53,8 +53,21 @@ router.post("/activity", async (req, res) => {
   }
 });
 
-//POST - Creates a new room
 
+//POST - Find roooms of one user
+router.post("/user", async (req, res) => {
+  try {
+    const user = req.body;
+    res.json(await roomController.findMyRooms(user));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
+
+//POST - Creates a new room
 router.post("/", monitor, async (req, res) => {
   try {
     const room = req.body;
