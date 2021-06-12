@@ -46,7 +46,7 @@ const userSchema = new Schema({
     unique: true,
   },
   telephone: {
-    type: String,
+    type: Number,
     unique: true
   },
   isAdmin: {
@@ -59,7 +59,7 @@ const userSchema = new Schema({
   },
   subscription: {
     type: String,
-    enum: ["Mensual", "Anual", "Pendiente"],
+    enum: ["Mensual", "Anual", "Premium", "Pendiente"],
     required: true,
   },
   photo: {

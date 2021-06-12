@@ -55,7 +55,7 @@ router.post("/activity", async (req, res) => {
 
 
 //POST - Find roooms of one user
-router.post("/user", async (req, res) => {
+router.post("/userid", async (req, res) => {
   try {
     const user = req.body;
     res.json(await roomController.findMyRooms(user));

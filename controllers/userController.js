@@ -19,6 +19,7 @@ class Cliente {
     for (let i = 0; i < 25; i++) {
         token += characters[Math.floor(Math.random() * characters.length )];
     }
+    
     user = {
       name : user.name,
       lastName1: user.lastName1,
