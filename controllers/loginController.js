@@ -39,7 +39,7 @@ class LoginController {
 
     let verificar = await bcrypt.compare(passwordCheck, password);
     if (!verificar) {
-      return new Error("El password o el email no coinciden");
+      throw new Error("El password o el email son incorrectos.");
     }
     let payload = {
       id: monitor._id,
@@ -49,5 +49,6 @@ class LoginController {
     return jwt.sign(payload, secret);
   }
 }
+
 let loginController = new LoginController();
 module.exports = loginController;
