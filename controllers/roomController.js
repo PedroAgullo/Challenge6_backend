@@ -16,14 +16,11 @@ class Sala {
     var myRooms = [];
 
     rooms = await this.findAllRoomsActive();
-    console.log(rooms, "<<<==== Clases activas en la variable rooms");
     
 
 
     for(let x = 0; x < rooms.length; x++){
       var membersArray = rooms[x].members;
-      console.log(rooms[x].members, "Usuarios de cada clase activas");
-      console.log(membersArray, "Total usuarios de la clase. lenght");
       for (let y = 0; y < membersArray.length; y++){
         if (rooms[x].members[y] == user.id){
           myRooms.push(rooms[x])
@@ -177,14 +174,12 @@ class Sala {
   async leaveRoom(data) {
     const id = data.id;
     const member = data.member;
-    //console.log(id, member);
     return Room.findByIdAndUpdate({ _id: id }, { $pull: { members: member } });
   }
 
   async leaveRoomCoach(data) {
     const id = data.id;
     const coach = data.coach;
-    //console.log(id, coach);
     return Room.findByIdAndUpdate({ _id: id }, { $pull: { coaches: coach } });
   }
 

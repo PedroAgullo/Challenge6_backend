@@ -36,16 +36,9 @@ class Cliente {
       token: token
     }
 
-    console.log(user, "<<<==== Creado datos para pasarle a la funcion create");
     let usuario = await User.create(user);
 
-    console.log(usuario, "<<<<==== Datos del usuario que hemos creado");
-
-
-
-
-
-
+    //Llamamos a la funcion para enviar el correo al usuario.
     await nodemailer.sendConfirmationEmail(user.name, user.email, token);
 
     return usuario;
@@ -81,7 +74,6 @@ class Cliente {
   async updateSuscription(data) {
 
     let prueba = User.findByToken(data);
-    console.log (prueba);
 
 
     return User.findByIdAndUpdate(
@@ -99,10 +91,8 @@ class Cliente {
   async updateActive(token) {
 
     let user = await userController.findByToken(token);
-    console.log (user);
-
-
-    return User.findByIdAndUpdate(
+    
+    User.findByIdAndUpdate(
       { _id: user._id },
       //Datos que cambiamos
       {
@@ -110,6 +100,10 @@ class Cliente {
       },
       { new: true, omitUndefined: true }
     );
+
+    let resultado = "La cuenta se ha activado correctamente. Por favor, ve a la web de xSmileFitness para entrar en tu área de usuario.";
+
+    return resultado;
   }
 
 

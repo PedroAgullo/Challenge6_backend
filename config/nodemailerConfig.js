@@ -16,11 +16,12 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
   transport.sendMail({
     from: user,
     to: email,
-    subject: "Please confirm your account",
-    html: `<h1>Email Confirmation</h1>
-        <h2>Hello ${name}</h2>
-        <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-        <a href=http://localhost:3005/user/confirm/${confirmationCode}> Click here</a>
+    subject: "Por favor, confirma tu cuenta de correo.",
+    html: `<h1>Correo de Activación de cuenta</h1>
+        <h2>Hola ${name}</h2>
+        <p>Gracias por registrarte en xSmileFitness.  
+        Por favor, confirma tu email haciendo click en el siguiente enlace.</p>
+        <a href=http://localhost:3005/user/confirm/${confirmationCode}> Activar cuenta.</a>
         </div>`,
   }).catch(err => console.log(err));
 };

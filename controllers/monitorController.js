@@ -11,7 +11,6 @@ class Profesor {
 
   async findAllMonitorName() {
      let data = await Monitor.find();
-    console.log(data, "Datos devueltos del monitor");
     let num = data.length;
     var monitor=[];
       for(let x = 0; x < num; x++){
@@ -71,7 +70,6 @@ class Profesor {
       rating: data.rating,
     };
 
-    console.log(mensaje);
 
     return Monitor.findByIdAndUpdate(
       { _id: id },
