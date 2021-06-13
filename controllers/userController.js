@@ -91,8 +91,9 @@ class Cliente {
   async updateActive(token) {
 
     let user = await userController.findByToken(token);
+    console.log(user);
     
-    User.findByIdAndUpdate(
+    let usuario = await User.findByIdAndUpdate(
       { _id: user._id },
       //Datos que cambiamos
       {
