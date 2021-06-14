@@ -11,6 +11,8 @@ class Sala {
     return Room.find({ isActive: "true" });
   }
 
+
+  //Encuentra las clases que tiene un usuario
   async findMyRooms(user) {
     let rooms = [];
     var myRooms = [];
@@ -32,6 +34,25 @@ class Sala {
     return myRooms; 
   
   }
+
+  async findMyMonitorRooms(user) {
+    let rooms = [];
+    var myRooms = [];
+
+    rooms = await this.findAllRoomsActive();
+
+    for(let x = 0; x < rooms.length; x++){
+      var coachesArray = rooms[x].coaches;
+      for (let y = 0; y < coachesArray.length; y++){
+        if (rooms[x].coaches[y] == user.id){
+          myRooms.push(rooms[x])
+        }
+    }
+
+    }    
+    return myRooms;   
+  }
+
 
   async findAllRoomsNoActive() {
     return Room.find({ isActive: "false" });

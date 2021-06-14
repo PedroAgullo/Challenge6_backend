@@ -54,11 +54,23 @@ router.post("/activity", async (req, res) => {
 });
 
 
-//POST - Find roooms of one user
-router.post("/userid", async (req, res) => {
+//POST - Find rooms of one user
+router.post("/userid", authenticate, async (req, res) => {
   try {
     const user = req.body;
     res.json(await roomController.findMyRooms(user));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
+//POST - Find rooms of one Monitor
+router.post("/monitorid", monitor, async (req, res) => {
+  try {
+    const user = req.body;
+    res.json(await roomController.findMyMonitorRooms(user));
   } catch (err) {
     return res.status(500).json({
       message: err.message,
