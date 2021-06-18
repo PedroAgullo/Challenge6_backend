@@ -70,12 +70,9 @@ class Sala {
   //Busca clases por filtro de fecha y nombre.
   async findByDateName(filtro) {
 
-    console.log(filtro.name, "<<<=== Datos de la variable filtro. que llegan al controller");
-    console.log(filtro.date, "<<<=== Datos de la variable filtro. que llegan al controller");
+
     let roomFecha = await this.findByDate(filtro.date);
-    console.log (roomFecha, "<<<=== Clases que encuentra con esa fecha");
     let room = await this.findAllRoomsActivity(filtro.name);
-    console.log(room, "<<<<=== Array de las clases por nombre");
     
     return room;
   }

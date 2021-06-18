@@ -91,7 +91,6 @@ class Cliente {
   async updateActive(token) {
 
     let user = await userController.findByToken(token);
-    console.log(user);
     
     let usuario = await User.findByIdAndUpdate(
       { _id: user._id },
