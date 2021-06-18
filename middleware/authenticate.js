@@ -8,6 +8,10 @@ const authenticate = (req, res, next) => {
     }
     let token = req.headers.authorization.split(" ")[1];
     let auth = jwt.verify(token, secret);
+
+    console.log("ID- POSTMAN: ", req.body.member);
+    console.log("ID de jsonwebtoken: ", auth.id);
+
     if (auth.id != req.body.member) {
       throw new Error("No tienes permiso para realizar esta accion");
     }

@@ -50,6 +50,7 @@ router.put("/", authenticate, async (req, res) => {
   try {
     const data = req.body;
     res.json(await userController.modifyUser(data));
+
   } catch (err) {
     return res.status(500).json({
       mensaje: err.message,

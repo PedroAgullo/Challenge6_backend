@@ -24,7 +24,7 @@ class Sala {
     for(let x = 0; x < rooms.length; x++){
       var membersArray = rooms[x].members;
       for (let y = 0; y < membersArray.length; y++){
-        if (rooms[x].members[y] == user.id){
+        if (rooms[x].members[y] == user.member){
           myRooms.push(rooms[x])
         }
     }
@@ -63,8 +63,24 @@ class Sala {
   }
 
   async findByDate(fecha) {
-    return Room.find({ date: fecha });
+    return Room.find({ dateStart: fecha });
   }
+
+
+  //Busca clases por filtro de fecha y nombre.
+  async findByDateName(filtro) {
+
+    console.log(filtro.name, "<<<=== Datos de la variable filtro. que llegan al controller");
+    console.log(filtro.date, "<<<=== Datos de la variable filtro. que llegan al controller");
+    let roomFecha = await this.findByDate(filtro.date);
+    console.log (roomFecha, "<<<=== Clases que encuentra con esa fecha");
+    let room = await this.findAllRoomsActivity(filtro.name);
+    console.log(room, "<<<<=== Array de las clases por nombre");
+    
+    return room;
+  }
+
+
 
   async deleteRoom(id) {
     return Room.findByIdAndRemove(id);
