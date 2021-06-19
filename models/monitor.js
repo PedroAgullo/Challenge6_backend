@@ -71,6 +71,10 @@ const monitorSchema = new Schema({
   review: {
     type: Array,
   },
+  photo: {
+    type: String,
+    default : ""
+  },
 });
 
 const toJSONConfig = {
