@@ -145,6 +145,14 @@ class Sala {
 
     //Esta parte nos añade el usuario a la clase si hay sitio disponible.
     return Room.findByIdAndUpdate({ _id: id }, { $push: { members: member } });
+
+    
+
+ /*    //Llamamos a la funcion para enviar el correo al usuario.
+    await nodemailer.sendConfirmationEmailNewClass(user.name, user.email, token);
+ */
+   
+    
   }
 
   async joinRoomCoach(data) {
