@@ -3,6 +3,9 @@ const roomController = require("../controllers/roomController.js");
 const authenticate = require("../middleware/authenticate.js");
 const admin = require("../middleware/admin.js");
 const monitor = require("../middleware/monitor.js");
+const nodemailer = require('../config/nodemailerConfig.js');
+
+
 
 //GET - Return all Rooms in the DB
 
@@ -97,7 +100,9 @@ router.post("/", monitor, async (req, res) => {
 router.post("/join", authenticate, async (req, res) => {
   try {
     const data = req.body;
+
     res.json(await roomController.joinRoom(data));
+
   } catch (err) {
     return res.status(500).json({
       message: err.message,
@@ -173,4 +178,8 @@ router.put("/", monitor, async (req, res) => {
   }
 });
 
+
+
 module.exports = router;
+
+

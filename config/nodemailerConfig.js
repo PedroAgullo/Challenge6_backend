@@ -26,31 +26,34 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
   }).catch(err => console.log(err));
 };
 
-module.exports.sendConfirmationEmailNewClass = (name, email, confirmationCode) => {
+module.exports.sendConfirmationEmailNewClass = (name, email, roomName, roomDateStart) => {
+  console.log("Nombre del usuario: ", name);
+  console.log("Nombre del email", email);
+  console.log("Nombre del roomName: ", roomName);
+  console.log("Nombre del usuario: ", roomDateStart);
+
   transport.sendMail({
     from: user,
     to: email,
     subject: "xSmile Fitness - Confirmación clase reservada.",
     html: `<h1>Confirmacion clase reservada</h1>
         <h2>Hola ${name}</h2>
-        <p>Te confirmamos la reserva de la clase de ${room.name} para el ${room.dateStart}, 
+        <p>Te confirmamos la reserva de la clase de ${roomName} para el ${roomDateStart}, 
         te esperamos!.</p>
        
         </div>`,
   }).catch(err => console.log(err));
 };
 
-module.exports.sendReviewClass = (name, email, confirmationCode) => {
+module.exports.sendReviewClass = (name, email) => {
   transport.sendMail({
     from: user,
     to: email,
     subject: "xSmile Fitness - Cuentanos tus impresiones.",
     html: `<h1>Queremos saber que te pareció la clase de hoy</h1>
-        <h2>Hola ${name}</h2>
+        <h2>Hola ${name}</h2>               
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4Mkq0_Zs7Y2aKbpEABvEDBRyY0v1YEzuCNdoC2pqpyWVLIg/viewform?embedded=true" width="640" height="1286" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-        <p>Te confirmamos la reserva de la clase de ${room.name} para el ${room.dateStart}, 
-        te esperamos!.</p>
-       
+               
         </div>`,
   }).catch(err => console.log(err));
 };

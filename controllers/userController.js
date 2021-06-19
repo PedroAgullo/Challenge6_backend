@@ -2,7 +2,6 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const nodemailer = require('../config/nodemailerConfig.js');
 const userControl = require ('./userController.js');
-const { findById } = require("../models/user");
 
 class Cliente {
   constructor() {}

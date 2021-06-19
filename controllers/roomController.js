@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const Monitor = require("../models/monitor");
 const Room = require("../models/room");
+const nodemailer = require('../config/nodemailerConfig.js');
+
 
 class Sala {
   async findAllRooms() {
@@ -83,34 +85,36 @@ class Sala {
     return Room.findByIdAndRemove(id);
   }
 
+
+
   async updateStatusRoom(data) {
     let clase = await Room.findById(data.id);
-    let userArray = clase.members;
-    var listaArray = [];
+    console.log("Clase para desactivar encontrada: ", clase);
+
+
 
     // Buscar los usuarios dentro de la clase para enviar email para review
-    for (var x = 0; x < userArray.length; x++) {
-      var usuario = await User.findById(userArray[x]);
+    for (var x = 0; x < clase.members.length; x++) {
+      console.log("ID usuario : ", clase.members[x]);
+      let user = User.findById(clase.members[x]);   
 
-      let lista = {
-        usuario: usuario.name,
-        email: usuario.email,
-      };
+      console.log("Usuario encontrado : ", user);
+      nodemailer.sendReviewClass(user.name, user.email);
 
-      listaArray[x] = lista;
+
     }
 
-    listaArray[x] =
-      "Clase terminada. Enviar correos para review a los usuarios de la clase";
 
     // Update Active status
     Room.findByIdAndUpdate({ _id: data.id }, { isActive: data.isActive });
-    return listaArray;
+    return ;
   }
 
   async createRoom(room) {
     return Room.create(room);
   }
+
+
 
   async joinRoom(data) {
     const id = data.id;
@@ -143,16 +147,14 @@ class Sala {
       throw new Error("La clase está llena.");
     }
 
+
+    nodemailer.sendConfirmationEmailNewClass(user.name, user.email, room.name, room.dateStart);
+
+
     //Esta parte nos añade el usuario a la clase si hay sitio disponible.
     return Room.findByIdAndUpdate({ _id: id }, { $push: { members: member } });
 
-    
-
- /*    //Llamamos a la funcion para enviar el correo al usuario.
-    await nodemailer.sendConfirmationEmailNewClass(user.name, user.email, token);
- */
-   
-    
+        
   }
 
   async joinRoomCoach(data) {
@@ -213,17 +215,20 @@ class Sala {
     return Room.findByIdAndUpdate({ _id: id }, { $push: { coaches: coach, nameCoach: nameCoach } });
   }
 
+
   async leaveRoom(data) {
     const id = data.id;
     const member = data.member;
     return Room.findByIdAndUpdate({ _id: id }, { $pull: { members: member } });
   }
 
+
   async leaveRoomCoach(data) {
     const id = data.id;
     const coach = data.coach;
-    return Room.findByIdAndUpdate({ _id: id }, { $pull: { coaches: coach } });
+    return Room.findByIdAndUpdate({ _id: id }, { $pull: { coaches: coach}, nameCoach: ""});
   }
+
 
   async deleteRoom(id) {
     console.log ("id que lleag al controller: ", id);
