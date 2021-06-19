@@ -10,6 +10,26 @@ class Cliente {
     return User.find();
   }
 
+
+  //Encuentra un grupo de usuarios dados en un array
+
+  async findUserGroup(users) {
+
+    let arrayUsers = [];
+    let num = users.length;
+
+    for (let x=0; x < num; x++){
+      
+
+    }
+
+
+
+    return arrayUsers;
+  }
+
+  
+
   async createUser(user) {
     user.password = await bcrypt.hash(user.password, 10);
 

@@ -218,6 +218,7 @@ class Sala {
   }
 
   async deleteRoom(id) {
+    console.log ("id que lleag al controller: ", id);
     return Room.findByIdAndRemove(id);
   }
 }

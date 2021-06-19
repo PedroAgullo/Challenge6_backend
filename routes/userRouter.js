@@ -16,6 +16,17 @@ router.get("/", admin, async (req, res) => {
   }
 });
 
+//Encuentra un grupo de usuarios dados en un array
+router.post("/group", admin, async (req, res) => {
+  try {
+    res.json(await userController.findUserGroup(req.body));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
 //POST - Creates a new user
 
 router.post("/", async (req, res) => {

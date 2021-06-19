@@ -83,6 +83,7 @@ router.post("/monitorid", monitor, async (req, res) => {
 router.post("/", monitor, async (req, res) => {
   try {
     const room = req.body;
+    console.log(room);
     res.json(await roomController.createRoom(room));
   } catch (err) {
     return res.status(500).json({
@@ -145,10 +146,13 @@ router.post("/leave/coach", monitor, async (req, res) => {
 
 //DELETE - Delete rooms
 
-router.delete("/", monitor, async (req, res) => {
+router.post("/delete", async (req, res) => {
   try {
-    const id = req.body.id;
+    let id = req.body.id;
+    console.log("id que llega por body: ", req);
+    console.log("Entro a borrar la clase");
     res.json(await roomController.deleteRoom(id));
+    console.log("Salgo de borrar la clase");
   } catch (err) {
     return res.status(500).json({
       message: err.message,
