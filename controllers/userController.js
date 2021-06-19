@@ -2,6 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const nodemailer = require('../config/nodemailerConfig.js');
 const userControl = require ('./userController.js');
+const { findById } = require("../models/user");
 
 class Cliente {
   constructor() {}
@@ -15,15 +16,27 @@ class Cliente {
 
   async findUserGroup(users) {
 
-    let arrayUsers = [];
-    let num = users.length;
+    let allUsers = await User.find();
+        
+    let arrayUsers = [];    
+    let numX = users.length;
+    let numY = allUsers.length;
+    
 
-    for (let x=0; x < num; x++){
-      
+    let res;
 
+    for (let x=0; x < numX; x++){
+      console.log("Vueltas de todos los ids:", numX)
+      for (let y=0; y < numY; y++){      
+
+        if (users[x] == allUsers[y]._id){
+          console.log("idUsuario:  ", users[x], "      ----    ", allUsers[y]._id, "ID array todos los usuarios");
+          arrayUsers.push(allUsers[y]);
+        }
+      }
     }
 
-
+    console.log("Array que devolvemos con la busqueda : ", arrayUsers);
 
     return arrayUsers;
   }

@@ -19,6 +19,7 @@ router.get("/", admin, async (req, res) => {
 //Encuentra un grupo de usuarios dados en un array
 router.post("/group", admin, async (req, res) => {
   try {
+    console.log("Lo que llega al backend: ",req.body)
     res.json(await userController.findUserGroup(req.body));
   } catch (err) {
     return res.status(500).json({
