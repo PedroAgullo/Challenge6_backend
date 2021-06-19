@@ -174,6 +174,7 @@ class Sala {
     nombre = rooms[0].name;
     let num = monitor.speciality.length;
     let y = false;
+
     for (let x = 0; x < num; x++) {
       if (nombre == monitor.speciality[x]) {
         y = true;
@@ -184,13 +185,30 @@ class Sala {
       throw new Error("No tienes esa especialidad. No puedes dar la clase");
     }
 
-    //Busca las rooms donde tiene ya clase en esa hora y día.
+    // Busca las rooms donde tiene ya clase en esa hora y día.
+    let muyOcupado = [];
     let ocupado = [];
-    ocupado = await Room.find({ coaches: coach, date: rooms[0].date });
+    ocupado = await Room.find({ coaches: coach, isActive: true}); 
 
-    if (ocupado[0] != null) {
+
+      for (let x=0; x < ocupado.length; x++){
+        if (ocupado?.dateStart[x] === data.dateStart){
+          muyOcupado.push(ocupado[x]);
+        }
+
+      }
+
+    //  date: rooms[0].date, isActive: true });
+
+
+
+    console.log(muyOcupado, "Muy ocupado");
+
+
+    if (muyOcupado[0] != undefined) {
       throw new Error("Ya tienes una clase a esa hora.");
     }
+
 
     let arrayRoom = []; //Declaramos el array vacio.
 

@@ -112,7 +112,7 @@ router.post("/join", authenticate, async (req, res) => {
 
 //POST - Join coaches to the room
 
-router.post("/join/coach", monitor, async (req, res) => {
+router.post("/join/coach", async (req, res) => {
   try {
     const data = req.body;
     res.json(await roomController.joinRoomCoach(data));
