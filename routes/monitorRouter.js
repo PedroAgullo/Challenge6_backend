@@ -73,8 +73,9 @@ router.post("/addmessage", authenticate, async (req, res) => {
 
 //PUT - Modify a user
 
-router.put("/", monitor, async (req, res) => {
+router.post("/update", monitor, async (req, res) => {
   try {
+    console.log("Datos que llegan de axios", req.body);
     const data = req.body;
     res.json(await monitorController.modifyMonitor(data));
   } catch (err) {
