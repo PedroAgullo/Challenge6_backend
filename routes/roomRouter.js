@@ -169,10 +169,10 @@ router.post("/delete", async (req, res) => {
 
 //PUT - Update Status Room Active true o false
 
-router.put("/", monitor, async (req, res) => {
+router.post("/status", monitor, async (req, res) => {
   try {
     const data = req.body;
-    res.json(await roomController.updateStatusRoom(data));
+    res.json(await roomController.finishRoom(data));
   } catch (err) {
     return res.status(500).json({
       message: err.message,

@@ -52,8 +52,8 @@ module.exports.sendReviewClass = (name, email) => {
     subject: "xSmile Fitness - Cuentanos tus impresiones.",
     html: `<h1>Queremos saber que te pareció la clase de hoy</h1>
         <h2>Hola ${name}</h2>  
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4Mkq0_Zs7Y2aKbpEABvEDBRyY0v1YEzuCNdoC2pqpyWVLIg/viewform?embedded=true" width="640" height="1286" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+        Haz click para ver el formulario.
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4Mkq0_Zs7Y2aKbpEABvEDBRyY0v1YEzuCNdoC2pqpyWVLIg/viewform?embedded=true" width="640" height="1286" frameborder="0" marginheight="0" marginwidth="0">Click</iframe>
                
         </div>`,
   }).catch(err => console.log(err));

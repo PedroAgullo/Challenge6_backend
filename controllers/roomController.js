@@ -88,7 +88,7 @@ class Sala {
 
 
 
-  async updateStatusRoom(data) {
+  async finishRoom(data) {
     let clase = await Room.findById(data.id);
     let allUsers = await userController.findAllUsers();
     

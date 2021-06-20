@@ -64,7 +64,7 @@ const userSchema = new Schema({
   },
   photo: {
     type: String,
-    default : ""
+    default : "https://github.com/PedroAgullo/Challenge6_backend_Redux/blob/develop/src/images/defaultFoto2.png?raw=true"
   },
   qrCode: {
     type: String,
