@@ -73,6 +73,8 @@ router.post("/userid", authenticate, async (req, res) => {
 router.post("/monitorid", monitor, async (req, res) => {
   try {
     const user = req.body;
+    console.log(req.body);
+
     res.json(await roomController.findMyMonitorRooms(user));
   } catch (err) {
     return res.status(500).json({
@@ -178,6 +180,17 @@ router.put("/", monitor, async (req, res) => {
   }
 });
 
+router.post("/update", monitor, async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+    res.json(await roomController.updateStatusRoom(data));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
 
 
 module.exports = router;

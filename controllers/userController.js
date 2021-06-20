@@ -101,10 +101,32 @@ class Cliente {
     );
   }
 
+  
+
+//Modifi user by admin.
+async modifyUserByAdmin(data) {
+  return User.findByIdAndUpdate(
+    { _id: data.member },
+    //Datos que cambiamos
+    {
+      address: data.address,
+      country: data.country,
+      city: data.city,
+      telephone: data.telephone,
+      subscription : data.subscription,
+      isActive: data.isActive
+    },
+    { new: true, omitUndefined: true }
+  );
+}
+
+
+
+
 // para cambiar la suscripcion del usuario por anual, mensual o pendiente
   async updateSuscription(data) {
 
-    let prueba = User.findByToken(data);
+    // let prueba = User.findByToken(data);
 
 
     return User.findByIdAndUpdate(

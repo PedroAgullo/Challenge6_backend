@@ -72,11 +72,32 @@ router.put("/", authenticate, async (req, res) => {
   }
 });
 
-// PUT Modify status payment a user
 
-router.put("/payment", admin, async (req, res) => {
+
+//Modify user by admin
+router.post("/update", admin, async (req, res) => {
   try {
     const data = req.body;
+    console.log("Datos que llegan del body", req.body)
+
+    res.json(await userController.modifyUserByAdmin(data));
+
+  } catch (err) {
+    return res.status(500).json({
+      mensaje: err.message,
+    });
+  }
+});
+
+
+
+
+// PUT Modify status payment a user
+
+router.post("/payment", authenticate, async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(req.body);
     res.json(await userController.updateSuscription(data));
   } catch (err) {
     return res.status(500).json({

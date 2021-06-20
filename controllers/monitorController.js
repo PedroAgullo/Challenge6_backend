@@ -37,6 +37,8 @@ class Profesor {
   }
 
   async modifyMonitor(data) {
+    console.log
+
     return Monitor.findByIdAndUpdate(
       { _id: data.id },
       //Datos que cambiamos

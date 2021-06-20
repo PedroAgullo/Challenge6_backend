@@ -119,6 +119,22 @@ class Sala {
 
 
 
+
+  async updateStatusRoom(data) {
+    let clase = await Room.findById(data.id);
+    let allUsers = await userController.findAllUsers();
+    
+
+    // Update Active status
+    return Room.findByIdAndUpdate({ _id: data.id }, 
+      {dateStart : data.dateStart, 
+      dateEnd : data.dateEnd, 
+      coaches : data.coaches,
+      nameCoach : data.nameCoach 
+      });    
+  }
+
+
   async createRoom(room) {
     return Room.create(room);
   }
