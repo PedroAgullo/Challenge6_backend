@@ -61,6 +61,8 @@ router.post("/email", admin, async (req, res) => {
 router.put("/", authenticate, async (req, res) => {
   try {
     const data = req.body;
+    console.log("Datos que llegan del body", req.body)
+
     res.json(await userController.modifyUser(data));
 
   } catch (err) {

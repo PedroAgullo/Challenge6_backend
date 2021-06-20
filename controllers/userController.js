@@ -95,8 +95,7 @@ class Cliente {
         country: data.country,
         city: data.city,
         telephone: data.telephone,
-        isActive: data.isActive,
-        photo: data.photo
+        isActive: data.isActive
       },
       { new: true, omitUndefined: true }
     );

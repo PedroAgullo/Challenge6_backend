@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Monitor = require("../models/monitor");
 const Room = require("../models/room");
 const nodemailer = require('../config/nodemailerConfig.js');
+const userController = require ('../controllers/userController.js');
 
 
 class Sala {
@@ -89,26 +90,34 @@ class Sala {
 
   async updateStatusRoom(data) {
     let clase = await Room.findById(data.id);
-    console.log("Clase para desactivar encontrada: ", clase);
+    let allUsers = await userController.findAllUsers();
+    
+    console.log(clase, "Datos de la clase : ");
 
 
-
-    // Buscar los usuarios dentro de la clase para enviar email para review
-    for (var x = 0; x < clase.members.length; x++) {
-      console.log("ID usuario : ", clase.members[x]);
-      let user = User.findById(clase.members[x]);   
-
-      console.log("Usuario encontrado : ", user);
-      nodemailer.sendReviewClass(user.name, user.email);
+    console.log(clase.members.length, "Tamaño del array de la clase");
+    console.log(allUsers.length, "Tamaño de los usuarios");
+    console.log(clase.members[0], "Id del member de la clase");
+    console.log(allUsers[0]._id, "Id del member de la clase");
 
 
+    //Busca los usuarios de la clase, dentro del array de todos los usuarios para encontrar su email y mandarle el correo.
+    for(let x=0; x < clase.members.length; x++){
+      console.log("Estamos en el for de members en la vuelta : ", x);
+      for(let y=0; y < allUsers.length; y++){
+        console.log("Estamos en el for de users en la vuelta : ", y);
+        if (clase.members[x] == allUsers[y]._id){
+          nodemailer.sendReviewClass(allUsers[y].name, allUsers[y].email);
+          console.log(allUsers[y].email)
+        }
+      }
     }
 
-
     // Update Active status
-    Room.findByIdAndUpdate({ _id: data.id }, { isActive: data.isActive });
-    return ;
+    return Room.findByIdAndUpdate({ _id: data.id }, { isActive: data.isActive });    
   }
+
+
 
   async createRoom(room) {
     return Room.create(room);
@@ -157,16 +166,19 @@ class Sala {
         
   }
 
+
+
+
   async joinRoomCoach(data) {
     const id = data.id;
     const coach = data.coach;
     const nameCoach = data.nameCoach;
-    let rooms = [];
+    let rooms;
     let monitor;
 
     //Nos busca la room donde quiere entrar el coach
     rooms = await Room.find({ _id: id });
-
+    console.log(rooms);
     monitor = await Monitor.findById(coach);
 
     //Compara especialidad de la room y el coach.
@@ -186,28 +198,19 @@ class Sala {
     }
 
     // Busca las rooms donde tiene ya clase en esa hora y día.
-    let muyOcupado = [];
-    let ocupado = [];
-    ocupado = await Room.find({ coaches: coach, isActive: true}); 
-
-
-      for (let x=0; x < ocupado.length; x++){
-        if (ocupado?.dateStart[x] === data.dateStart){
-          muyOcupado.push(ocupado[x]);
-        }
-
+    let ocupado;
+    ocupado = await Room.find({ coaches: coach, isActive: true, dateStart : rooms[0].dateStart }); 
+    console.log(rooms[0].dateStart);
+    console.log("guarda la clase que coincida : ", ocupado);
+        if (ocupado[0] != undefined){
+          throw new Error("Ya tienes una clase a esa hora.");
+          console.log("Ya tienes una clase a esa hora");
       }
 
-    //  date: rooms[0].date, isActive: true });
 
-
-
-    console.log(muyOcupado, "Muy ocupado");
-
-
-    if (muyOcupado[0] != undefined) {
-      throw new Error("Ya tienes una clase a esa hora.");
-    }
+    // if (muyOcupado[0] != undefined) {
+    //   throw new Error("Ya tienes una clase a esa hora.");
+    // }
 
 
     let arrayRoom = []; //Declaramos el array vacio.
