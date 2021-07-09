@@ -74,8 +74,9 @@ class Cliente {
     await nodemailer.sendConfirmationEmail(user.name, user.email, token);
 
     return usuario;
-
   }
+
+
 
   async findByEmail(email) {
     return User.findOne({ email: email });
